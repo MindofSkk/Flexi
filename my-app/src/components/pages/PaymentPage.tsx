@@ -64,7 +64,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
                 handleClose={handleCloseModal}
                 amount="5,999"
                 qrCodeUrl="https://img.freepik.com/premium-vector/qr-code-icon-qr-code-sample-icon-abstract-style-white-background-qr-code-scanner-blac-scan-code-business-illustration-bar-code-icon-line-symbol-modern-vector-illustration-eps-10_564974-442.jpg" // Replace with actual QR code URL
-                businessName="ABC Enterprise"
+                businessName="Mind of Skk"
             />
         <div className="container mt-5">
             <div className="row">

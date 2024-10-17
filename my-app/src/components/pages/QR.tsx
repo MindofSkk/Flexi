@@ -1,73 +1,128 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
+
+import amazon from "../../images/amazonpay.png";
+import bhim from "../../images/bhim.png";
+import cred from "../../images/cred_circle.png";
+import gpay from "../../images/googlepay.png";
+import phonepay from "../../images/phonepe.e101f376.png";
 
 interface PaymentModalProps {
-    show: boolean;
-    handleClose: () => void;
-    amount: string;
-    qrCodeUrl: string; // URL or data URL for the QR code image
-    businessName: string;
+  show: boolean;
+  handleClose: () => void;
+  amount: string;
+  qrCodeUrl: string; // URL or data URL for the QR code image
+  businessName: string;
 }
 
 const PaymentModal: React.FC<PaymentModalProps> = ({
-    show,
-    handleClose,
-    amount,
-    qrCodeUrl,
-    businessName,
+  show,
+  handleClose,
+  amount,
+  qrCodeUrl,
+  businessName,
 }) => {
-    if (!show) return null; // Don't render anything if not showing
+  const [timeLeft, setTimeLeft] = useState(120); // 60 seconds countdown
 
-    return (
-        <div
-            className="modal fade show"
-            style={{ display: 'block' }} // Display the modal
-            tabIndex={-1}
-            role="dialog"
-            aria-labelledby="paymentModalLabel"
-            aria-hidden="true"
-        >
-            <div className="modal-dialog modal-dialog-centered" role="document">
-                <div className="modal-content">
-                    <div className="modal-header">
-                        <h5 className="modal-title" id="paymentModalLabel">
-                            <div className="d-flex align-items-center justify-content-center">
-                                {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 70" className="me-2">
-                                    <circle cx="-25.93" cy="41.95" r="29.87" fill="#5f259f" transform="rotate(-77)" />
-                                    <path fill="#fff" d="M48.43 27.08c0-1.17-1-2.17-2.17-2.17h-4l-9.18-10.52a3.39 3.39 0 0 0-3.5-1l-3.18 1c-.5.17-.67.84-.33 1.17l10.01 9.51H20.9c-.5 0-.83.34-.83.84v1.67c0 1.17 1 2.17 2.17 2.17h2.34v8c0 6.02 3.17 9.52 8.5 9.52 1.68 0 3.01-.17 4.68-.83v5.34c0 1.5 1.17 2.67 2.67 2.67h2.34c.5 0 1-.5 1-1V29.58h3.84c.5 0 .83-.33.83-.83zM37.75 41.43c-1 .5-2.34.67-3.34.67-2.67 0-4-1.34-4-4.34v-8.01h7.34z"/>
-                                </svg> */}
-                                {businessName}
-                            </div>
-                        </h5>
-                        <button type="button" className="btn-close" onClick={handleClose} aria-label="Close"></button>
-                    </div>
-                    <div className="modal-body text-center">
-                        <h5 className="mb-4">Pay With UPI QR</h5>
-                        <img
-                            src={qrCodeUrl}
-                            alt="UPI QR Code"
-                            className="img-fluid mb-3"
-                            style={{ maxWidth: '200px', height: 'auto' }}
-                        />
-                        <p className="fs-5">Amount: ₹ {amount}</p>
-                        <p className="text-muted">Scan the QR using any UPI app on your phone.</p>
-                        <div className="d-flex justify-content-center mb-3">
-                            {/* Icons for different UPI apps */}
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/PhonePe_logo.png/512px-PhonePe_logo.png" alt="PhonePe" className="mx-2" width="40" />
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Paytm_logo.svg/512px-Paytm_logo.svg.png" alt="PayTM" className="mx-2" width="40" />
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Google_Pay_logo.svg/512px-Google_Pay_logo.svg.png" alt="Google Pay" className="mx-2" width="40" />
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/BHIM_logo.png/512px-BHIM_logo.png" alt="BHIM" className="mx-2" width="40" />
-                        </div>
-                        <p className="text-muted">QR Code is valid for 01:00 minutes</p>
-                    </div>
-                    <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" onClick={handleClose}>
-                            Cancel
-                        </button>
-                    </div>
+  useEffect(() => {
+    if (!show) return;
+
+    // Start the timer when the modal is shown
+    setTimeLeft(120);
+
+    const timer = setInterval(() => {
+      setTimeLeft((prevTime) => {
+        if (prevTime <= 1) {
+          clearInterval(timer);
+          handleClose(); // Automatically close the modal when the timer reaches 0
+          return 0;
+        }
+        return prevTime - 1;
+      });
+    }, 1000);
+
+    // Clean up the timer when the component is unmounted or when the modal is closed
+    return () => clearInterval(timer);
+  }, [show, handleClose]);
+
+  // Format the time left as MM:SS
+  const formatTime = (seconds: number) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${String(minutes).padStart(2, "0")}:${String(remainingSeconds).padStart(2, "0")}`;
+  };
+
+  if (!show) return null; // Don't render anything if not showing
+
+  return (
+    <>
+      <div className="modal-backdrop fade show" id="backdrop"></div>
+
+      <div
+        className="modal fade show"
+        style={{ display: "block" }} // Display the modal
+        tabIndex={-1}
+        role="dialog"
+        aria-labelledby="paymentModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-dialog-centered" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="paymentModalLabel">
+                <div className="d-flex align-items-center justify-content-center">
+                  {businessName}
                 </div>
+              </h5>
+              <button
+                type="button"
+                className="btn-close"
+                onClick={handleClose}
+                aria-label="Close"
+              ></button>
             </div>
+            <div className="modal-body text-center">
+              <img
+                src={qrCodeUrl}
+                alt="UPI QR Code"
+                className="img-fluid mb-3"
+                style={{ maxWidth: "200px", height: "auto" }}
+              />
+              <p className="fs-5">Amount: ₹ {amount}</p>
+              <p>mindofskk@paytm</p>
+              <p className="text-muted">
+                Scan the QR using any UPI app on your phone.
+              </p>
+              <div className="d-flex justify-content-center mb-3">
+                <img src={phonepay} alt="PhonePe" className="mx-2" width="40" />
+                <img
+                  src="https://static.vecteezy.com/system/resources/thumbnails/019/909/641/small/paytm-transparent-paytm-free-free-png.png"
+                  alt="PayTM"
+                  className="mx-2"
+                  width="40"
+                />
+                <img src={amazon} alt="Amazon Pay" className="mx-2" width="40" />
+                <img src={gpay} alt="Google Pay" className="mx-2" width="40" />
+                <img src={cred} alt="Cred" className="mx-2" width="40" />
+                <img src={bhim} alt="BHIM" className="mx-2" width="40" />
+              </div>
+              <p className="text-muted">
+                QR Code is valid for <span className="text-primary">{formatTime(timeLeft)} </span>minutes
+              </p>
+            </div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={handleClose}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
         </div>
-    );
+      </div>
+    </>
+  );
 };
 
 export default PaymentModal;
