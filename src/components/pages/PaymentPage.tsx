@@ -10,6 +10,7 @@ interface PaymentFormProps {
     amount: string;
     originalAmount: string;
     discountPercentage: string;
+    
 }
 
 const PaymentForm: React.FC<PaymentFormProps> = ({
