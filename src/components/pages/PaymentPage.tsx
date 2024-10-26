@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import PaymentModal from "./QR";
 import { postData } from "../../utils/api";
 import moment from "moment";
+import productList from "../../utils/ProductList";
 
 interface PaymentFormProps {
   images: string[];
@@ -49,8 +50,8 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
       const payload = {
         name: values.name,
         email: values.email,
-        phone: values.phone,
-        amount: amount,
+        phoneNo: values.phone,
+        // amount: amount,
         upiReferenceNo: "",
         currentTime: moment().format('YYYY-MM-DD HH:mm:ss'), // Get current date and time
     };
@@ -59,7 +60,6 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
       console.log("Form Submitted:", payload);
     },
   });
-
   // Function to create a user
   const SubmitUserDetails = async (payload: object) => {
     const url = ""; // Since the base URL includes `/api/users`, this points to that endpoint
