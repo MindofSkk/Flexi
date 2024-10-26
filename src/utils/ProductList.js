@@ -10,6 +10,7 @@ import font from "../assets/productImages/BG1.jpeg"
 
 
 const productList = [
+  
     {
       productName: "Flexi 8.1 for Windows 7",
       price: 350,
@@ -95,5 +96,4 @@ const productList = [
   
   export default productList;
   
-  
-  
+ 
