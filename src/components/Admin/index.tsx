@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import TableComponent from "./Tablecomponents"; // Adjust the import based on your file structure
 import { getData } from "../../utils/api";
 import moment from "moment";
+import productList from "../../utils/ProductList";
 
 const Test = () => {
   const columns = React.useMemo(
@@ -32,6 +33,7 @@ const Test = () => {
             <button onClick={() => handleSend(row.original)}>Send</button>
             <button onClick={() => handleEdit(row.original)}>Edit</button>
             <button onClick={() => handleDelete(row.original)}>Delete</button>
+          
           </div>
         ),
       },
@@ -98,7 +100,7 @@ const Test = () => {
   const handleDelete = (row: any) => {
     console.log("Delete:", row);
   };
-
+console.log(productList)
   return (
     <>
       {alluserdata && alluserdata.length ? (
