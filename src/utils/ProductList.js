@@ -1,10 +1,10 @@
 import bg1 from "../assets/productImages/BG1.jpeg"
-import bg2 from "../assets/productImages/BG1.jpeg"
-import flexi7 from "../assets/productImages/BG1.jpeg"
-import flexi1011 from "../assets/productImages/BG1.jpeg"
-import flexi105 from "../assets/productImages/BG1.jpeg"
-import flexi12 from "../assets/productImages/BG1.jpeg"
-import font from "../assets/productImages/BG1.jpeg"
+import bg2 from "../assets/productImages/BG2.jpeg"
+import flexi7 from "../assets/productImages/flexi 8.1 windows 7.jpeg"
+import flexi1011 from "../assets/productImages/Flexi 8.1 windows 10 and 11.png"
+import flexi105 from "../assets/productImages/Flexi10.5.1.jpeg"
+import flexi12 from "../assets/productImages/Flexi 12.jpeg"
+import font from "../assets/productImages/font.webp"
 
 
 
