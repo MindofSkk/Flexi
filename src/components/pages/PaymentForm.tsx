@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import PaymentModal from "./QR";
-import { postData } from "../../utils/api";
+import PaymentModal from "./PaymentModal";
 import moment from "moment";
 
 interface PaymentFormProps {
@@ -23,6 +22,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
   discountPercentage,
 }) => {
   const [showModal, setShowModal] = useState(false);
+  const [payload, setPayload] = useState({});
 
   // const handleOpenModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
@@ -46,40 +46,39 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
         .required("Phone number is required"),
     }),
     onSubmit: (values) => {
-      const payload = {
+      const obj = {
         name: values.name,
         email: values.email,
         phoneNo: values.phone,
         // amount: amount,
         upiReferenceNo: "",
-        currentTime: moment().format('YYYY-MM-DD HH:mm:ss'), // Get current date and time
-    };
-      SubmitUserDetails(payload);
+        currentTime: moment().format("YYYY-MM-DD HH:mm:ss"), // Get current date and time
+      };
+      setPayload(obj);
       setShowModal(true);
-      console.log("Form Submitted:", payload);
+      console.log("Form Submitted:", obj);
     },
   });
   // Function to create a user
-  const SubmitUserDetails = async (payload: object) => {
-    const url = ""; // Since the base URL includes `/api/users`, this points to that endpoint
-
-    try {
-      const result = await postData(url, payload);
-      console.log("User created successfully:", result);
-    } catch (error) {
-      console.error("Failed to create user:", error);
-    }
-  };
 
   return (
     <>
       <PaymentModal
         show={showModal}
         handleClose={handleCloseModal}
-        amount="5,999"
+        amount={amount}
         qrCodeUrl="https://img.freepik.com/premium-vector/qr-code-icon-qr-code-sample-icon-abstract-style-white-background-qr-code-scanner-blac-scan-code-business-illustration-bar-code-icon-line-symbol-modern-vector-illustration-eps-10_564974-442.jpg" // Replace with actual QR code URL
         businessName="Mind of Skk"
+        userPayload={payload}
       />
+      <button
+        onClick={() => {
+          setShowModal(true);
+        }}
+      >
+        {" "}
+        cicl
+      </button>
       <div className="container mt-5">
         <div className="row">
           <div className="col-12 col-md-6 mb-4">

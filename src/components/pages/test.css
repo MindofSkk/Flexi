@@ -1,0 +1,32 @@
+.order-confirmation {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .confirmation-header {
+    margin-bottom: 20px;
+  }
+  
+  .order-summary {
+    border: 1px solid #ccc;
+    padding: 20px;
+  }
+  
+  .product-image {
+    float: left;
+    margin-right: 10px;
+  }
+  
+  .product-info {
+    display: inline-block;
+  }
+  
+  .back-to-home {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
