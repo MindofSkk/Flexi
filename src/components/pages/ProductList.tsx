@@ -9,31 +9,11 @@ export default function ProductList() {
     navigate(`/${productUrl}`);
   };
 
+  //
+  //
 
-  const handleGooglePay = () => {
-    const userAgent = navigator.userAgent.toLowerCase();
-    
-    // Check if the device is mobile
-    const isMobile = /android|iphone|ipad|ipod/.test(userAgent);
-
-    if (isMobile) {
-      // Attempt to open Google Pay app
-      window.location.href = 'googlepay://pay';
-
-      // Fallback after a short delay
-      setTimeout(() => {
-        // You can redirect to Google Pay website if needed
-        window.location.href = 'https://pay.google.com'; // Fallback URL
-      }, 3000); // Delay to allow app to open
-    } else {
-      alert('Please use a mobile device to make payments.');
-    }
-  };
   return (
     <div className="d-flex flex-wrap justify-content-around">
-<button onClick={handleGooglePay}>
-      Pay with Google Pay
-    </button>
       {productList.map((product) => (
         <div
           key={product.productCode}
