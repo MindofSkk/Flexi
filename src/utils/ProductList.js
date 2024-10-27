@@ -6,6 +6,7 @@ import flexi105 from "../assets/productImages/Flexi10.5.1.jpeg";
 import flexi12 from "../assets/productImages/Flexi 12.jpeg";
 import font from "../assets/productImages/font.webp";
 
+
 const productList = [
   {
     id: 1,
@@ -17,6 +18,7 @@ const productList = [
       "Flexi 8.1 for Windows 7 offers a powerful solution for all your design needs.",
     productCode: "P1",
     image: flexi7,
+    url: "flex-8.1",
   },
   {
     id: 2,
@@ -29,6 +31,7 @@ const productList = [
       "Designed for Windows 10/11, Flexi 8.1 enhances your creative capabilities.",
     productCode: "P2",
     image: flexi1011,
+    url: "flex-8.1-windows10-windows11",
   },
   {
     id: 3,
@@ -41,6 +44,7 @@ const productList = [
       "Flexi 10.5.1 delivers advanced tools for professional-level designs.",
     productCode: "P3",
     image: flexi105,
+    url: "flex-10.5.1-windows10-windows11",
   },
   {
     id: 4,
@@ -53,6 +57,7 @@ const productList = [
       "Flexi 12 is the latest version, packed with features for cutting-edge design.",
     productCode: "P4",
     image: flexi12,
+    url: "flex-12-windows10-windows11",
   },
   {
     id: 5,
@@ -65,6 +70,7 @@ const productList = [
       "bg-1 offers stunning backgrounds for your projects, easy to use.",
     productCode: "P5",
     image: bg1,
+    url: "Begginer-File-1",
   },
   {
     id: 6,
@@ -77,6 +83,7 @@ const productList = [
       "bg-2 provides a wide variety of background options to elevate your designs.",
     productCode: "P6",
     image: bg2,
+    url: "Begginer-File-2",
   },
   {
     id: 7,
@@ -89,11 +96,12 @@ const productList = [
       "Get the best of both worlds with our Hindi/English font package.",
     productCode: "P7",
     image: font,
+    url: "Font",
   },
   {
     id: 8,
 
-    productName: "Redsail driver",
+    productName: "Redsail Driver",
     price: 299,
     discount: "40% off",
     realPrice: 418.6,
@@ -101,6 +109,7 @@ const productList = [
       "The redsail driver is essential for seamless cutting plotter operations.",
     productCode: "P8",
     image: "",
+    url: "Redsail-Driver",
   },
   {
     id: 9,
@@ -113,7 +122,9 @@ const productList = [
       "This USB driver ensures smooth communication with your cutting plotter.",
     productCode: "P9",
     image: "",
+    url: "Usb-Driver",
   },
 ];
 
 export default productList;
+

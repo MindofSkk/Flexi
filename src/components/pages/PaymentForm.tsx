@@ -10,8 +10,8 @@ interface PaymentFormProps {
   images: string[];
   title: string;
   productInfo: string;
-  amount: string;
-  originalAmount: string;
+  amount: number;
+  originalAmount: number;
   discountPercentage: string;
 }
 
@@ -209,12 +209,12 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
                   Amount
                 </label>
                 <div className="d-flex align-items-center">
-                  <h3>{amount}</h3>
+                  <h3>₹{amount}</h3>
                   <span className="text-muted me-2 px-2">
-                    <s>{originalAmount}</s>
+                    <s>₹{originalAmount}</s>
                   </span>
                   <span className="text-success me-2">
-                    {discountPercentage} off
+                    {discountPercentage}
                   </span>
                 </div>
                 <p className="text-primary">Quick Download After Payment</p>
