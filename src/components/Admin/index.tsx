@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from "react";
 import TableComponent from "./Tablecomponents"; // Adjust the import based on your file structure
 import { getData } from "../../utils/api";

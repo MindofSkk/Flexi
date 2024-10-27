@@ -4,7 +4,6 @@ import * as Yup from "yup";
 import PaymentModal from "./QR";
 import { postData } from "../../utils/api";
 import moment from "moment";
-import productList from "../../utils/ProductList";
 
 interface PaymentFormProps {
   images: string[];
