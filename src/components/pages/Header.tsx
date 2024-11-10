@@ -21,7 +21,7 @@ const Header: React.FC = () => {
             <a href="/" className="text-white text-decoration-none" >All Products</a>
           </li>
           <li className="me-3">
-            <a href="/" className="text-white text-decoration-none">Contact Us</a>
+            <a href="/Contact-us" className="text-white text-decoration-none">Contact Us</a>
           </li>
           <li>
             <a href="/" className="text-white text-decoration-none">About Us</a>
