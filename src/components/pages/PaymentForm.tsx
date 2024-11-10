@@ -11,6 +11,7 @@ interface PaymentFormProps {
   amount: number;
   originalAmount: number;
   discountPercentage: string;
+  productCode:string;
 }
 
 const PaymentForm: React.FC<PaymentFormProps> = ({
@@ -20,6 +21,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
   amount,
   originalAmount,
   discountPercentage,
+  productCode
 }) => {
   const [showModal, setShowModal] = useState(false);
   const [payload, setPayload] = useState({});
@@ -53,6 +55,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
         // amount: amount,
         upiReferenceNo: "",
         currentTime: moment().format("YYYY-MM-DD HH:mm:ss"), // Get current date and time
+        productCode
       };
       setPayload(obj);
       setShowModal(true);
@@ -71,14 +74,14 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
         businessName="Mind of Skk"
         userPayload={payload}
       />
-      <button
+      {/* <button
         onClick={() => {
           setShowModal(true);
         }}
       >
         {" "}
         cicl
-      </button>
+      </button> */}
       <div className="container mt-5">
         <div className="row">
           <div className="col-12 col-md-6 mb-4">

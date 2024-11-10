@@ -29,6 +29,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
 }) => {
   const [timeLeft, setTimeLeft] = useState(120);
   const [showReferenceInput, setShowReferenceInput] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // Step 1: Add loading state
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -70,10 +71,13 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
       ...userPayload,
       upiReferenceNo: values.referenceNumber,
     };
+    
+    setIsLoading(true); // Step 2: Set loading state to true before API call
     await SubmitUserDetails(obj);
     setShowReferenceInput(false);
     handleClose();
     navigate("/PaymentDone");
+    setIsLoading(false); // Step 3: Set loading state to false after API call
   };
 
   const SubmitUserDetails = async (payload: object) => {
@@ -117,67 +121,76 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
               ></button>
             </div>
             <div className="modal-body text-center">
-              <img
-                src={qr}
-                alt="UPI QR Code"
-                className="img-fluid mb-3"
-                style={{ maxWidth: "200px", height: "auto" }}
-              />
-              <p className="fs-5">Amount: ₹ {amount}</p>
-              <p>mindofskk@paytm</p>
-              <p className="text-muted">
-                Scan the QR using any UPI app on your phone.
-              </p>
-              <div className="d-flex justify-content-center mb-3">
-                <img src={phonepay} alt="PhonePe" className="mx-2" width="40" />
-                <img
-                  src="https://static.vecteezy.com/system/resources/thumbnails/019/909/641/small/paytm-transparent-paytm-free-free-png.png"
-                  alt="PayTM"
-                  className="mx-2"
-                  width="40"
-                />
-                <img src={amazon} alt="Amazon Pay" className="mx-2" width="40" />
-                <img src={gpay} alt="Google Pay" className="mx-2" width="40" />
-                <img src={cred} alt="Cred" className="mx-2" width="40" />
-                <img src={bhim} alt="BHIM" className="mx-2" width="40" />
-              </div>
-              <p className="text-muted">
-                QR Code is valid for{" "}
-                <span className="text-primary">{formatTime(timeLeft)} </span>
-                minutes
-              </p>
-              {!showReferenceInput ? (
-                <button
-                  onClick={handlePaymentDoneClick}
-                  className="btn btn-success"
-                >
-                  Payment Done
-                </button>
+              {isLoading ? (
+                // Step 4: Display the loader while waiting for the API call
+                <div className="spinner-border text-primary" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </div>
               ) : (
-                <Formik
-                  initialValues={{ referenceNumber: "" }}
-                  validationSchema={validationSchema}
-                  onSubmit={handleReferenceSubmit}
-                >
-                  {({ handleSubmit }) => (
-                    <Form onSubmit={handleSubmit} className="mt-3 w-75 mx-auto">
-                      <Field
-                        type="text"
-                        name="referenceNumber"
-                        placeholder="Enter UTR / Reference / Transaction ID"
-                        className="form-control mb-2"
-                      />
-                      <ErrorMessage
-                        name="referenceNumber"
-                        component="div"
-                        className="text-danger"
-                      />
-                      <button type="submit" className="btn btn-primary mt-2">
-                        Submit
-                      </button>
-                    </Form>
+                <>
+                  <img
+                    src={qr}
+                    alt="UPI QR Code"
+                    className="img-fluid mb-3"
+                    style={{ maxWidth: "200px", height: "auto" }}
+                  />
+                  <p className="fs-5">Amount: ₹ {amount}</p>
+                  <p>mindofskk@paytm</p>
+                  <p className="text-muted">
+                    Scan the QR using any UPI app on your phone.
+                  </p>
+                  <div className="d-flex justify-content-center mb-3">
+                    <img src={phonepay} alt="PhonePe" className="mx-2" width="40" />
+                    <img
+                      src="https://static.vecteezy.com/system/resources/thumbnails/019/909/641/small/paytm-transparent-paytm-free-free-png.png"
+                      alt="PayTM"
+                      className="mx-2"
+                      width="40"
+                    />
+                    <img src={amazon} alt="Amazon Pay" className="mx-2" width="40" />
+                    <img src={gpay} alt="Google Pay" className="mx-2" width="40" />
+                    <img src={cred} alt="Cred" className="mx-2" width="40" />
+                    <img src={bhim} alt="BHIM" className="mx-2" width="40" />
+                  </div>
+                  <p className="text-muted">
+                    QR Code is valid for{" "}
+                    <span className="text-primary">{formatTime(timeLeft)} </span>
+                    minutes
+                  </p>
+                  {!showReferenceInput ? (
+                    <button
+                      onClick={handlePaymentDoneClick}
+                      className="btn btn-success"
+                    >
+                      Payment Done
+                    </button>
+                  ) : (
+                    <Formik
+                      initialValues={{ referenceNumber: "" }}
+                      validationSchema={validationSchema}
+                      onSubmit={handleReferenceSubmit}
+                    >
+                      {({ handleSubmit }) => (
+                        <Form onSubmit={handleSubmit} className="mt-3 w-75 mx-auto">
+                          <Field
+                            type="text"
+                            name="referenceNumber"
+                            placeholder="Enter UTR / Reference / Transaction ID"
+                            className="form-control mb-2"
+                          />
+                          <ErrorMessage
+                            name="referenceNumber"
+                            component="div"
+                            className="text-danger"
+                          />
+                          <button type="submit" className="btn btn-primary mt-2">
+                            Submit
+                          </button>
+                        </Form>
+                      )}
+                    </Formik>
                   )}
-                </Formik>
+                </>
               )}
             </div>
           </div>

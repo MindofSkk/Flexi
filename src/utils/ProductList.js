@@ -17,7 +17,7 @@ const productList = [
     realPrice: 490.0,
     description:
       "This Flexi 8.1 software supports only Windows 7 (32 Bit) ",
-    productCode: "P1",
+    productCode: "F-8.1- 7",
     image: flexi7,
     url: "flex-8.1",
   },
@@ -30,7 +30,7 @@ const productList = [
     realPrice: 2798.6,
     description:
       "This Flexi 8.1 software is fully supported on both Windows 10 and Windows 11.",
-    productCode: "P2",
+    productCode: "F-8.1 -10/11",
     image: flexi1011,
     url: "flex-8.1-windows10-windows11",
   },
@@ -43,7 +43,7 @@ const productList = [
     realPrice: 1190.0,
     description:
       "Flexi 10.5.1 software is  supported  Windows 10",
-    productCode: "P3",
+    productCode: "F-10.5.1",
     image: flexi105,
     url: "flex-10.5.1-windows10-windows11",
   },
@@ -56,7 +56,7 @@ const productList = [
     realPrice: 4198.6,
     description:
       "Flexi 12 is the latest version and fully supported on both Windows 10 and Windows 11.",
-    productCode: "P4",
+    productCode: "F-12",
     image: flexi12,
     url: "flex-12-windows10-windows11",
   },
@@ -69,7 +69,7 @@ const productList = [
     realPrice: 1118.6,
     description:
       "Beginner File design by Mind of Skk & inside of this file you got lots of new sticker designs.",
-    productCode: "P5",
+    productCode: "BG-1",
     image: bg1,
     url: "Begginer-File-1",
   },
@@ -82,7 +82,7 @@ const productList = [
     realPrice: 978.6,
     description:
       "this file is designed by Mind of Skk and this successor of the beginner file ",
-    productCode: "P6",
+    productCode: "BG-2",
     image: bg2,
     url: "Begginer-File-2",
   },

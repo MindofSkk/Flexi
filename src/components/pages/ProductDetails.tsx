@@ -29,6 +29,7 @@ const ProductDetails: React.FC = () => {
         amount={product.price}
         originalAmount={product.realPrice}
         discountPercentage={product.discount}
+        productCode={product.productCode}
       />
     </Suspense>
   );

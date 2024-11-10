@@ -18,7 +18,7 @@ const AppRoutes: React.FC = () => {
         <Route path="/:productUrl" element={<ProductDetails />} />
         <Route path="/PaymentDone" element={<OrderConfirmation />} />
 
-        <Route path="/Admin-Details" element={<Admin />} />
+        <Route path="/admin8086" element={<Admin />} />
         {/* <Route path="/home" element={<Home />} /> */}
       </Routes>
     </>
