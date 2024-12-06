@@ -58,7 +58,7 @@ const Test = () => {
   const [alluserdata, setAlluserdata] = useState<any>([]);
   const [isAuthenticated, setIsAuthenticated] = useState(false); // For checking if the admin is authenticated
   const [isModalOpen, setIsModalOpen] = useState(true); // To show the modal on page load
-
+  
   const columns = React.useMemo(
     () => [
       { accessorKey: "name", header: "Name" },
@@ -70,7 +70,8 @@ const Test = () => {
         accessorKey: "currentTime",
         header: "Date/Time",
         cell: ({ row }: any) => {
-          const formattedDate = moment(row.original.currentTime).format("DD-MM-YYYY hh:mm A");
+          // const formattedDate = moment.utc(isoDate).format("DD-MM-YY hh-mm A"); // Format in UTC
+          const formattedDate = moment.utc(row.original.currentTime).format("DD-MM-YY hh:mm A");
           return <span>{formattedDate}</span>;
         },
       },
@@ -125,6 +126,7 @@ const Test = () => {
   const handleModalClose = () => {
     setIsModalOpen(false); // Close the modal if the user wants to exit
   };
+  console.log("user all data :",alluserdata)
 
   return (
     <>
