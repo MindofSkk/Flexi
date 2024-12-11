@@ -7,48 +7,63 @@ const api = axios.create({
 });
 
 /**
- * Function to send a POST request.
+ * Send a POST request.
  * @param {string} url - The endpoint relative to the base URL.
  * @param {Object} data - The data to send in the request body.
- * @returns {Promise} - Returns a promise that resolves to the response.
+ * @returns {Promise} - Resolves to the response data.
  */
 export const postData = async (url, data) => {
     try {
         const response = await api.post(url, data);
-        return response.data; // Return the response data
+        return response.data;
     } catch (error) {
         console.error('Error posting data:', error);
-        throw error; // Rethrow the error for handling elsewhere
+        throw error;
     }
 };
 
 /**
- * Function to send a GET request.
+ * Send a GET request.
  * @param {string} url - The endpoint relative to the base URL.
- * @returns {Promise} - Returns a promise that resolves to the response.
+ * @returns {Promise} - Resolves to the response data.
  */
 export const getData = async (url) => {
     try {
         const response = await api.get(url);
-        return response.data; // Return the response data
+        return response.data;
     } catch (error) {
         console.error('Error fetching data:', error);
-        throw error; // Rethrow the error for handling elsewhere
+        throw error;
     }
 };
 
 /**
- * Function to send a PUT request (for editing).
+ * Send a PUT request.
  * @param {string} url - The endpoint relative to the base URL.
  * @param {Object} data - The updated data to send in the request body.
- * @returns {Promise} - Returns a promise that resolves to the response.
+ * @returns {Promise} - Resolves to the response data.
  */
 export const putData = async (url, data) => {
     try {
         const response = await api.put(url, data);
-        return response.data; // Return the response data
+        return response.data;
     } catch (error) {
         console.error('Error updating data:', error);
-        throw error; // Rethrow the error for handling elsewhere
+        throw error;
+    }
+};
+
+/**
+ * Send a DELETE request.
+ * @param {string} id - The ID to include in the request URL.
+ * @returns {Promise} - Resolves to the response data.
+ */
+export const deleteData = async (id) => {
+    try {
+        const response = await api.delete(`/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error('Error deleting data:', error);
+        throw error;
     }
 };

@@ -29,7 +29,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
 }) => {
   const [timeLeft, setTimeLeft] = useState(120);
   const [showReferenceInput, setShowReferenceInput] = useState(false);
-  const [isLoading, setIsLoading] = useState(false); // Step 1: Add loading state
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -48,7 +48,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [show, handleClose, navigate]);
+  }, [show, handleClose]);
 
   const formatTime = (seconds: number) => {
     const minutes = Math.floor(seconds / 60);
@@ -59,7 +59,9 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
   };
 
   const validationSchema = Yup.object().shape({
-    referenceNumber: Yup.string().required("Reference number cannot be blank"),
+    referenceNumber: Yup.string()
+      .matches(/^\d{12}$/, "Reference number must be exactly 12 digits") // 12 digits validation
+      .required("Reference number cannot be blank"),
   });
 
   const handlePaymentDoneClick = () => {
@@ -71,13 +73,13 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
       ...userPayload,
       upiReferenceNo: values.referenceNumber,
     };
-    
-    setIsLoading(true); // Step 2: Set loading state to true before API call
+
+    setIsLoading(true);
     await SubmitUserDetails(obj);
     setShowReferenceInput(false);
     handleClose();
     navigate("/PaymentDone");
-    setIsLoading(false); // Step 3: Set loading state to false after API call
+    setIsLoading(false);
   };
 
   const SubmitUserDetails = async (payload: object) => {
@@ -122,7 +124,6 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
             </div>
             <div className="modal-body text-center">
               {isLoading ? (
-                // Step 4: Display the loader while waiting for the API call
                 <div className="spinner-border text-primary" role="status">
                   <span className="visually-hidden">Loading...</span>
                 </div>
